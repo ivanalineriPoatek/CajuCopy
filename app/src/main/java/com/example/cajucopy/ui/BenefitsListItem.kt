@@ -25,11 +25,12 @@ import com.example.cajucopy.R
 fun BenefitsListItem(
     color: Color,
     @DrawableRes icon: Int,
-    title: String
+    title: String,
+    modifier: Modifier = Modifier
 ) {
     val padding = 24.dp
     Box(
-        modifier = Modifier
+        modifier = modifier
             .height(180.dp)
             .width(120.dp)
             .clip(RoundedCornerShape(20.dp))
@@ -40,19 +41,19 @@ fun BenefitsListItem(
         Icon(
             painter = painterResource(id = icon),
             contentDescription = "",
-            modifier = Modifier
+            modifier = modifier
                 .align(Alignment.TopStart)
                 .padding(top = 12.dp, start = padding)
         )
         PriceComponentColumn(
-            Modifier
+            modifier
                 .align(Alignment.CenterStart)
                 .padding(start = padding),
             value = "0,00"
         )
         Text(
             text = title,
-            Modifier
+            modifier
                 .align(Alignment.BottomStart)
                 .padding(bottom = 12.dp, start = padding)
         )

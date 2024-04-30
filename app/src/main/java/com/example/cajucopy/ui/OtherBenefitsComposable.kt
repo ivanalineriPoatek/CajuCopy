@@ -27,10 +27,11 @@ fun OtherBalanceComponent(
     color: Color,
     @DrawableRes icon: Int,
     title: String,
-    value: String
+    value: String,
+    modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .height(80.dp)
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
@@ -41,7 +42,7 @@ fun OtherBalanceComponent(
             Icon(
                 painter = painterResource(id = icon),
                 contentDescription = "",
-                modifier = Modifier
+                modifier = modifier
                     .padding(start = 12.dp)
                     .size(40.dp),
                 tint = Color.White
@@ -52,7 +53,7 @@ fun OtherBalanceComponent(
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold
                 ),
-                modifier = Modifier.padding(start = 60.dp),
+                modifier = modifier.padding(start = 60.dp),
                 color = Color.White
             )
             PriceRowComponent(value)

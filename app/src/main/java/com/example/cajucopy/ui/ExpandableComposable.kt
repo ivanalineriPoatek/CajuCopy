@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -39,13 +40,12 @@ fun ExpandableComponent() {
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(12.dp)
+        modifier = Modifier.padding(4.dp)
     ) {
         Text(
             text = "Total em benefícios",
             style = style
         )
-
         Text(
             text = "R$ 0,48",
             style = style,
@@ -54,7 +54,6 @@ fun ExpandableComponent() {
     }
     Row(
         modifier = Modifier
-            .padding(12.dp)
             .animateContentSize(
                 animationSpec = spring(
                     dampingRatio = Spring.DampingRatioMediumBouncy,
@@ -67,12 +66,87 @@ fun ExpandableComponent() {
             modifier = Modifier
                 .weight(1f)
         ) {
-
             if (expanded) {
                 Row(
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(top = 20.dp)
+                    modifier = Modifier.padding(top = 12.dp)
+                ) {
+                    Text(
+                        text = "Valor flexível"
+                    )
+                    Text(
+                        text = "R$ 0,09",
+                        modifier = Modifier.padding(start = 150.dp)
+                    )
+                }
+            }
+            Row(
+                modifier = Modifier
+                    .padding(top = 20.dp)
+                    .fillMaxWidth()
+                    .height(1.dp)
+                    .background(Color.Gray),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+            }
+        }
+        IconButton(onClick = { expanded = !expanded }) {
+            Icon(
+                imageVector = if (expanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
+                contentDescription = if (expanded) {
+                    ""
+                } else {
+                    ""
+                }
+            )
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ExpandableComponentPreview() {
+    var expanded by rememberSaveable { mutableStateOf(false) }
+    val style = TextStyle(
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Bold
+    )
+    Row(
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.padding(4.dp)
+    ) {
+        Text(
+            text = "Total em benefícios",
+            style = style
+        )
+        Text(
+            text = "R$ 0,48",
+            style = style,
+            modifier = Modifier.padding(start = 150.dp)
+        )
+    }
+    Row(
+        modifier = Modifier
+            .animateContentSize(
+                animationSpec = spring(
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessLow
+                )
+            )
+    ) {
+
+        Column(
+            modifier = Modifier
+                .weight(1f)
+        ) {
+            if (expanded) {
+                Row(
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(top = 12.dp)
                 ) {
                     Text(
                         text = "Valor flexível"
