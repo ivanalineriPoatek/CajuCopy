@@ -5,6 +5,7 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -37,146 +38,77 @@ fun ExpandableComponent() {
         fontSize = 14.sp,
         fontWeight = FontWeight.Bold
     )
-    Row(
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(4.dp)
-    ) {
-        Text(
-            text = "Total em benefícios",
-            style = style
-        )
-        Text(
-            text = "R$ 0,48",
-            style = style,
-            modifier = Modifier.padding(start = 150.dp)
-        )
-    }
-    Row(
-        modifier = Modifier
-            .animateContentSize(
-                animationSpec = spring(
-                    dampingRatio = Spring.DampingRatioMediumBouncy,
-                    stiffness = Spring.StiffnessLow
-                )
-            )
-    ) {
-
-        Column(
-            modifier = Modifier
-                .weight(1f)
+    Column {
+        Row(
+            modifier = Modifier.padding(12.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            if (expanded) {
-                Row(
-                    horizontalArrangement = Arrangement.SpaceEvenly,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(top = 12.dp)
-                ) {
-                    Text(
-                        text = "Valor flexível"
-                    )
-                    Text(
-                        text = "R$ 0,09",
-                        modifier = Modifier.padding(start = 150.dp)
-                    )
-                }
-            }
-            Row(
-                modifier = Modifier
-                    .padding(top = 20.dp)
-                    .fillMaxWidth()
-                    .height(1.dp)
-                    .background(Color.Gray),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-            }
-        }
-        IconButton(onClick = { expanded = !expanded }) {
-            Icon(
-                imageVector = if (expanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
-                contentDescription = if (expanded) {
-                    ""
-                } else {
-                    ""
-                }
+            Text(
+                modifier = Modifier.weight(6f),
+                text = "Total em benefícios",
+                style = style
+
+            )
+            Text(
+                modifier = Modifier.weight(1f),
+                text = "R$0,48",
+                style = style
+
             )
         }
+        Row(
+            modifier = Modifier
+                .animateContentSize(
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessLow
+                    )
+                )
+        ) {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+            ) {
+                if (expanded) {
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceEvenly,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text(
+                            text = "Valor flexível"
+                        )
+                        Text(
+                            text = "R$ 0,09",
+                            modifier = Modifier.padding(start = 150.dp)
+                        )
+                    }
+                }
+                Box(
+                    modifier = Modifier
+                        .padding(start = 12.dp)
+                        .height(1.dp)
+                        .fillMaxWidth()
+                        .background(Color.Gray)
+                ) {
+                }
+            }
+            IconButton(onClick = { expanded = !expanded }) {
+                Icon(
+                    imageVector = if (expanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
+                    contentDescription = if (expanded) {
+                        ""
+                    } else {
+                        ""
+                    }
+                )
+            }
+        }
     }
+
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun ExpandableComponentPreview() {
-    var expanded by rememberSaveable { mutableStateOf(false) }
-    val style = TextStyle(
-        fontSize = 14.sp,
-        fontWeight = FontWeight.Bold
-    )
-    Row(
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(4.dp)
-    ) {
-        Text(
-            text = "Total em benefícios",
-            style = style
-        )
-        Text(
-            text = "R$ 0,48",
-            style = style,
-            modifier = Modifier.padding(start = 150.dp)
-        )
-    }
-    Row(
-        modifier = Modifier
-            .animateContentSize(
-                animationSpec = spring(
-                    dampingRatio = Spring.DampingRatioMediumBouncy,
-                    stiffness = Spring.StiffnessLow
-                )
-            )
-    ) {
-
-        Column(
-            modifier = Modifier
-                .weight(1f)
-        ) {
-            if (expanded) {
-                Row(
-                    horizontalArrangement = Arrangement.SpaceEvenly,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(top = 12.dp)
-                ) {
-                    Text(
-                        text = "Valor flexível"
-                    )
-                    Text(
-                        text = "R$ 0,09",
-                        modifier = Modifier.padding(start = 150.dp)
-                    )
-                }
-            }
-            Row(
-                modifier = Modifier
-                    .padding(top = 20.dp)
-                    .fillMaxWidth()
-                    .height(1.dp)
-                    .background(Color.Gray),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-            }
-        }
-        IconButton(onClick = { expanded = !expanded }) {
-            Icon(
-                imageVector = if (expanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
-                contentDescription = if (expanded) {
-                    ""
-                } else {
-                    ""
-                }
-            )
-        }
-    }
+    ExpandableComponent()
 }

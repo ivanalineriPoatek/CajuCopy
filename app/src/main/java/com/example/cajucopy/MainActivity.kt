@@ -51,6 +51,9 @@ private fun CajuScaffoldPreview() {
 @RequiresApi(Build.VERSION_CODES.S)
 @Composable
 fun CajuScaffold() {
+    val title1 = "REFEIÇÃO"
+    val title2 = "PREMIAÇÃO"
+    val title3 = "ALIMENTAÇÃO"
     val scroll = rememberScrollState()
     Column(modifier = Modifier.padding(12.dp)) {
         TopBarComponent()
@@ -68,12 +71,12 @@ fun CajuScaffold() {
                 modifier = Modifier.padding(end = 8.dp),
                 color = BenefitsType.FEEDING.color,
                 icon = BenefitsType.FEEDING.icon,
-                title = BenefitsType.FEEDING.name
+                title = title3
             )
             BenefitsListItem(
                 color = BenefitsType.SNACK.color,
                 icon = BenefitsType.SNACK.icon,
-                title = BenefitsType.SNACK.name
+                title = title1
             )
         }
         ExpandableComponent()
@@ -92,7 +95,7 @@ fun CajuScaffold() {
         OtherBalanceComponent(
             color = BenefitsType.OTHER_BENEFITS.color,
             icon = BenefitsType.OTHER_BENEFITS.icon,
-            title = BenefitsType.OTHER_BENEFITS.name,
+            title = title2,
             value = "0,00"
         )
     }

@@ -60,12 +60,13 @@ fun SetIconShape() {
         modifier = Modifier
             .size(50.dp)
             .clip(CircleShape)
-            .background(Color.Gray)
+            .background(Color(0xFFECECEC))
 
     ) {
         Icon(
+            tint = Color.Blue,
             modifier = Modifier
-                .padding(start = 12.dp),
+                .padding(start = 13.dp),
             painter = painterResource(id = R.drawable.baseline_person_outline_24),
             contentDescription = ""
         )
