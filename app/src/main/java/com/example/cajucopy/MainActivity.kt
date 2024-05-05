@@ -61,7 +61,11 @@ fun AllComponentsScaffold() {
     Scaffold(
         topBar = { TopBarComponent() },
         bottomBar = { SetNavigationBar() }) {
-        Column(modifier = Modifier.padding(it)) {
+        Column(
+            modifier = Modifier
+                .padding(it)
+                .padding(start = 8.dp, end = 8.dp)
+        ) {
             Text(
                 text = "BENEFÍCIOS",
                 modifier = Modifier.padding(12.dp),
@@ -234,7 +238,7 @@ private fun ExpandInfoAnimation() {
 @Preview(showBackground = true)
 @Composable
 private fun CajuScaffoldPreview() {
-    CajuScaffold()
+    AllComponentsScaffold()
 }
 
 @RequiresApi(Build.VERSION_CODES.S)

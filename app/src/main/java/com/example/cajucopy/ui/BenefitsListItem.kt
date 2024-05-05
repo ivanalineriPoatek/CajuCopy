@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.cajucopy.R
+import androidx.compose.ui.unit.sp
 import com.example.cajucopy.data.BenefitsType
 
 @RequiresApi(Build.VERSION_CODES.S)
@@ -57,10 +57,12 @@ fun BenefitsListItem(
             text = title,
             modifier
                 .align(Alignment.BottomStart)
-                .padding(bottom = 12.dp, start = 12.dp)
+                .padding(bottom = 12.dp, start = 12.dp),
+            fontSize = 12.sp,
         )
     }
 }
+
 @RequiresApi(Build.VERSION_CODES.S)
 @Preview(showBackground = true)
 @Composable

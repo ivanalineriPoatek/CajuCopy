@@ -67,7 +67,7 @@ fun ExpandableComponent(
             )
         }
         if (expanded) {
-            Column {
+            Column(modifier = Modifier.padding(top = 8.dp)) {
                 Row {
                     Row(modifier = modifier.weight(1f)) {
                         Text(
@@ -86,7 +86,7 @@ fun ExpandableComponent(
                         style = style,
                     )
                 }
-                Row {
+                Row(modifier = Modifier.padding(top = 8.dp)) {
                     Text(
                         text = "Próximo benefício",
                         modifier
