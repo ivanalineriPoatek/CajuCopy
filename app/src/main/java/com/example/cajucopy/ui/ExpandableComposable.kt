@@ -141,22 +141,38 @@ fun ExpandableTest(
             )
         }
         if (expanded) {
-            Row {
-                Text(
-                    text = "Valor flexível",
-                    modifier
-                        .padding(start = 12.dp, end = 12.dp)
-                        .weight(1f)
-                )
-                Icon(
-                    painter = painterResource(id = R.drawable.baseline_info_outline_24),
-                    contentDescription = ""
-                )
-                Text(
-                    text = "R$0,48",
-                    style = style,
-                )
+            Column {
+                Row {
+                    Text(
+                        text = "Valor flexível",
+                        modifier
+                            .padding(start = 12.dp, end = 12.dp)
+                            .weight(1f)
+                    )
+                    Icon(
+                        painter = painterResource(id = R.drawable.baseline_info_outline_24),
+                        contentDescription = ""
+                    )
+                    Text(
+                        text = "R$0,48",
+                        style = style,
+                    )
+                }
+                Row {
+                    Text(
+                        text = "Próximo benefício",
+                        modifier
+                            .padding(start = 12.dp, end = 12.dp)
+                            .weight(1f),
+                        style = style,
+                    )
+                    Text(
+                        text = "Não agendado",
+                        style = style,
+                    )
+                }
             }
+
         }
         Row(
             modifier
@@ -194,6 +210,7 @@ fun ExpandableTest(
 
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable
