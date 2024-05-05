@@ -30,7 +30,7 @@ fun BenefitsListItem(
     title: String,
     modifier: Modifier = Modifier
 ) {
-    val padding = 24.dp
+    val padding = 30.dp
     Box(
         modifier = modifier
             .height(180.dp)
@@ -56,8 +56,8 @@ fun BenefitsListItem(
         Text(
             text = title,
             modifier
-                .align(Alignment.BottomStart)
-                .padding(bottom = 12.dp, start = 12.dp),
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 12.dp),
             fontSize = 12.sp,
         )
     }
@@ -67,8 +67,8 @@ fun BenefitsListItem(
 @Preview(showBackground = true)
 @Composable
 fun BenefitsPreview() {
-    val color = BenefitsType.SNACK.color
-    val icon = BenefitsType.SNACK.icon
+    val color = BenefitsType.FEEDING.color
+    val icon = BenefitsType.FEEDING.icon
     val title = "REFEIÇÃO"
     BenefitsListItem(color = color, icon = icon, title)
 }
