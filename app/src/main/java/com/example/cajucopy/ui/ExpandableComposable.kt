@@ -4,6 +4,7 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,11 +26,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.cajucopy.R
 
 @Composable
 fun ExpandableComponent() {
@@ -92,7 +95,8 @@ fun ExpandableComponent() {
                 ) {
                 }
             }
-            IconButton(onClick = { expanded = !expanded }) {
+            IconButton(
+                onClick = { expanded = !expanded }) {
                 Icon(
                     imageVector = if (expanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
                     contentDescription = if (expanded) {
@@ -111,4 +115,88 @@ fun ExpandableComponent() {
 @Composable
 private fun ExpandableComponentPreview() {
     ExpandableComponent()
+}
+
+@Composable
+fun ExpandableTest(
+    modifier: Modifier = Modifier
+) {
+    val style = TextStyle(
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Bold
+    )
+    var expanded by rememberSaveable { mutableStateOf(false) }
+    Column(verticalArrangement = Arrangement.SpaceBetween) {
+        Row {
+            Text(
+                text = "Total em benefícios",
+                modifier
+                    .padding(start = 12.dp, end = 12.dp)
+                    .weight(1f),
+                style = style
+            )
+            Text(
+                text = "R$0,48",
+                style = style,
+            )
+        }
+        if (expanded) {
+            Row {
+                Text(
+                    text = "Valor flexível",
+                    modifier
+                        .padding(start = 12.dp, end = 12.dp)
+                        .weight(1f)
+                )
+                Icon(
+                    painter = painterResource(id = R.drawable.baseline_info_outline_24),
+                    contentDescription = ""
+                )
+                Text(
+                    text = "R$0,48",
+                    style = style,
+                )
+            }
+        }
+        Row(
+            modifier
+                .fillMaxWidth()
+                .animateContentSize(
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessLow
+                    )
+                )
+        ) {
+            Box(
+                modifier
+                    .padding(12.dp)
+                    .height(1.dp)
+                    .background(Color.Gray)
+                    .fillMaxWidth()
+                    .weight(5f)
+            ) {
+
+            }
+            Icon(
+                imageVector = if (expanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
+                contentDescription = if (expanded) {
+                    ""
+                } else {
+                    ""
+                },
+                modifier
+                    .weight(1f)
+                    .padding(6.dp)
+                    .clickable { expanded = !expanded }
+            )
+        }
+
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ExpandableTestPreview() {
+    ExpandableTest()
 }
