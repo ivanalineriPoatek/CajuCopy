@@ -17,8 +17,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.cajucopy.R
+import com.example.cajucopy.data.BenefitsType
 
 @RequiresApi(Build.VERSION_CODES.S)
 @Composable
@@ -55,7 +57,16 @@ fun BenefitsListItem(
             text = title,
             modifier
                 .align(Alignment.BottomStart)
-                .padding(bottom = 12.dp, start = padding)
+                .padding(bottom = 12.dp, start = 12.dp)
         )
     }
+}
+@RequiresApi(Build.VERSION_CODES.S)
+@Preview(showBackground = true)
+@Composable
+fun BenefitsPreview() {
+    val color = BenefitsType.SNACK.color
+    val icon = BenefitsType.SNACK.icon
+    val title = "REFEIÇÃO"
+    BenefitsListItem(color = color, icon = icon, title)
 }

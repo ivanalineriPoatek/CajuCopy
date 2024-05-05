@@ -2,7 +2,7 @@ package com.example.cajucopy.ui
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,8 +19,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.cajucopy.data.BenefitsType
 
 @Composable
 fun OtherBalanceComponent(
@@ -32,18 +34,24 @@ fun OtherBalanceComponent(
 ) {
     Row(
         modifier = modifier
+            .padding(8.dp)
             .height(80.dp)
-            .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
-            .background(color = color),
-        verticalAlignment = Alignment.CenterVertically
+            .fillMaxWidth()
+            .background(color),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Box(contentAlignment = Alignment.CenterStart) {
+        Row(
+            modifier = modifier.weight(1f),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Start
+        ) {
             Icon(
                 painter = painterResource(id = icon),
                 contentDescription = "",
                 modifier = modifier
-                    .padding(start = 12.dp)
+                    .padding(start = 8.dp)
                     .size(40.dp),
                 tint = Color.White
             )
@@ -53,11 +61,21 @@ fun OtherBalanceComponent(
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold
                 ),
-                modifier = modifier.padding(start = 60.dp),
+                modifier = modifier
+                    .padding(start = 8.dp),
                 color = Color.White
             )
-            PriceRowComponent(value)
         }
+        PriceRowComponent(value)
     }
+}
 
+@Preview(showBackground = true)
+@Composable
+private fun BenefitsRowPreview() {
+    val color = BenefitsType.OTHER_BENEFITS.color
+    val icon = BenefitsType.OTHER_BENEFITS.icon
+    val title = "PREMIAÇÃO"
+    val value = "0,00"
+    OtherBalanceComponent(color = color, icon = icon, title = title, value = value)
 }

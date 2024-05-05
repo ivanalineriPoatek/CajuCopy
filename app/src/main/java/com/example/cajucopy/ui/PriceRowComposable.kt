@@ -15,9 +15,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun PriceRowComponent(value: String) {
-    Row(
-        modifier = Modifier
-            .padding(start = 300.dp),
+    Row(modifier = Modifier.padding(end = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {

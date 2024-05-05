@@ -34,82 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cajucopy.R
 
-@Composable
-fun ExpandableComponent() {
-    var expanded by rememberSaveable { mutableStateOf(false) }
-    val style = TextStyle(
-        fontSize = 14.sp,
-        fontWeight = FontWeight.Bold
-    )
-    Column {
-        Row(
-            modifier = Modifier.padding(12.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-        ) {
-            Text(
-                modifier = Modifier.weight(6f),
-                text = "Total em benefícios",
-                style = style
 
-            )
-            Text(
-                modifier = Modifier.weight(1f),
-                text = "R$0,48",
-                style = style
-
-            )
-        }
-        Row(
-            modifier = Modifier
-                .animateContentSize(
-                    animationSpec = spring(
-                        dampingRatio = Spring.DampingRatioMediumBouncy,
-                        stiffness = Spring.StiffnessLow
-                    )
-                )
-        ) {
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-            ) {
-                if (expanded) {
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceEvenly,
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Text(
-                            text = "Valor flexível"
-                        )
-                        Text(
-                            text = "R$ 0,09",
-                            modifier = Modifier.padding(start = 150.dp)
-                        )
-                    }
-                }
-                Box(
-                    modifier = Modifier
-                        .padding(start = 12.dp)
-                        .height(1.dp)
-                        .fillMaxWidth()
-                        .background(Color.Gray)
-                ) {
-                }
-            }
-            IconButton(
-                onClick = { expanded = !expanded }) {
-                Icon(
-                    imageVector = if (expanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
-                    contentDescription = if (expanded) {
-                        ""
-                    } else {
-                        ""
-                    }
-                )
-            }
-        }
-    }
-
-}
 
 @Preview(showBackground = true)
 @Composable
@@ -118,7 +43,7 @@ private fun ExpandableComponentPreview() {
 }
 
 @Composable
-fun ExpandableTest(
+fun ExpandableComponent(
     modifier: Modifier = Modifier
 ) {
     val style = TextStyle(
@@ -136,6 +61,7 @@ fun ExpandableTest(
                 style = style
             )
             Text(
+                modifier = Modifier.padding(end = 8.dp),
                 text = "R$0,48",
                 style = style,
             )
@@ -143,17 +69,19 @@ fun ExpandableTest(
         if (expanded) {
             Column {
                 Row {
+                    Row(modifier = modifier.weight(1f)) {
+                        Text(
+                            text = "Valor flexível",
+                            modifier
+                                .padding(start = 12.dp, end = 12.dp)
+                        )
+                        Icon(
+                            painter = painterResource(id = R.drawable.baseline_info_outline_24),
+                            contentDescription = "",
+                        )
+                    }
                     Text(
-                        text = "Valor flexível",
-                        modifier
-                            .padding(start = 12.dp, end = 12.dp)
-                            .weight(1f)
-                    )
-                    Icon(
-                        painter = painterResource(id = R.drawable.baseline_info_outline_24),
-                        contentDescription = ""
-                    )
-                    Text(
+                        modifier = Modifier.padding(end = 8.dp),
                         text = "R$0,48",
                         style = style,
                     )
@@ -167,6 +95,7 @@ fun ExpandableTest(
                         style = style,
                     )
                     Text(
+                        modifier = Modifier.padding(end = 8.dp),
                         text = "Não agendado",
                         style = style,
                     )
@@ -215,5 +144,5 @@ fun ExpandableTest(
 @Preview(showBackground = true)
 @Composable
 private fun ExpandableTestPreview() {
-    ExpandableTest()
+    ExpandableComponent()
 }
